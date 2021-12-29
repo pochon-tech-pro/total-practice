@@ -1,0 +1,15 @@
+version: '3.4'
+volumes:
+  mysql_data: { driver: local }
+services:
+
+  mysql:
+    image: mysql:5.7
+    environment:
+      MYSQL_ROOT_PASSWORD: pass
+      MYSQL_DATABASE: db
+      MYSQL_USER: user
+      MYSQL_PASSWORD: pass
+      TZ: 'Asia/Tokyo'
+    volumes:
+      - mysql_data:/var/lib/mysql
