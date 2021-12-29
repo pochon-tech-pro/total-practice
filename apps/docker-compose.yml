@@ -1,4 +1,10 @@
 version: '3.4'
+x-logging:
+  &default-logging
+  driver: "json-file"
+  options:
+    max-size: "100k"
+    max-file: "3"
 volumes:
   mysql_data: { driver: local }
 services:
