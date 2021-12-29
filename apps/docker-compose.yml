@@ -20,7 +20,7 @@ services:
     volumes:
       - mysql_data:/var/lib/mysql
 
-  sample-swagger-ui:
+  swagger-ui:
     image: swaggerapi/swagger-ui
     volumes:
       - ./swagger:/usr/share/nginx/html/swagger
@@ -29,7 +29,12 @@ services:
     ports:
       - '9001:8080'
 
-  sample-redoc:
+  swagger-editor:
+    image: swaggerapi/swagger-editor
+    ports:
+      - "9002:8080"
+
+  redoc:
     image: redocly/redoc
     volumes:
       - ./swagger:/usr/share/nginx/html/swagger
@@ -37,7 +42,7 @@ services:
       SPEC_URL: ./swagger/openapi-doc.yaml
       PORT: 8080
     ports:
-      - '9002:8080'
+      - '9003:8080'
 
   nest:
     build:
