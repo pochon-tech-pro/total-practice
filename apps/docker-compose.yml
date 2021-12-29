@@ -19,3 +19,18 @@ services:
       TZ: 'Asia/Tokyo'
     volumes:
       - mysql_data:/var/lib/mysql
+
+  nest:
+    build:
+      context: .
+      dockerfile: nest.Dockerfile
+    volumes:
+      - .:/app
+    working_dir: /app/nest
+    logging: *default-logging
+    command: yarn start:dev
+    tty: true
+    depends_on:
+      - mysql
+    ports:
+      - "3000:3000"
