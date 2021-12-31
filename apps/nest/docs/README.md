@@ -7,17 +7,17 @@
 
 ```
 src/
-   ├ BoundaryContext/    ... 境界づけられたコンテキスト
-   │   ├ domain/         ... ドメイン層
-   │   │   ├ model/         ... ドメインモデル
-   │   │   └ type/          ... 基本型
-   │   ├ app/            ... アプリケーション層
-   │   │   ├ service/        ... アプリケーションサービス
-   │   │   └ repository/     ... リポジトリ（If)
-   │   ├ infra/          ... インフラ層
-   │   │   ├ entities/       ... ORM
-   │   │   └ repository/     ... リポジトリ（Impl)
-   │   └ ui/             ... プレゼンテーション層
-   └ context.module.ts   ... DI
+   └ BoundaryContext/    ... 境界づけられたコンテキスト
+       ├ domain/         ... ドメイン層
+       │   ├ model/         ... ドメインモデル
+       │   └ type/          ... 基本型
+       ├ app/            ... アプリケーション層
+       │   ├ service/        ... アプリケーションサービス
+       │   └ repository/     ... リポジトリ（If)
+       ├ infra/          ... インフラ層
+       │   ├ entities/       ... ORM
+       │   └ repository/     ... リポジトリ（Impl)
+       ├ ui/             ... プレゼンテーション層
+       └ context.module  ... DI解決
 ```
 
