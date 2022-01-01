@@ -14,4 +14,9 @@ export class CustomerService {
   async find(params: QueryParameters): Promise<Customer> {
     return this.repository.findByTel(Tel.create(params.tel));
   }
+
+  async save(): Promise<void> {
+    await this.repository.save(Customer.nullObject());
+    console.log('app.service: save');
+  }
 }

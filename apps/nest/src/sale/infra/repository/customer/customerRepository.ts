@@ -8,4 +8,8 @@ export class CustomerRepository implements ICustomerRepository {
   async findByTel(tel: Tel): Promise<Customer> {
     return Customer.create(tel, '検証太郎');
   }
+
+  async save(customer: Customer): Promise<void> {
+    console.log('save');
+  }
 }
