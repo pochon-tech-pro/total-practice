@@ -1,0 +1,17 @@
+{
+  "name": "default",
+  "type": "mysql",
+  "host": "mysql",
+  "port": 3306,
+  "username": "user",
+  "password": "pass",
+  "database": "db",
+  "synchronize": false,
+  "logging": true,
+  "entities": [
+    "dist/sale/infra/entities/**/*.entity.js"
+  ],
+  "migrations": [
+    "dist/migrations/**/*.js"
+  ]
+}
