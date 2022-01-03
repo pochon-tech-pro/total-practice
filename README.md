@@ -18,4 +18,4 @@ root/
   - 設計（シーケンス図・設計クラス図）
   
 ## Nest
-- [アーキテクチャ](./apps/nest/docs/README.md)
+- [アーキテクチャ](apps/nest-app/docs/README.md)

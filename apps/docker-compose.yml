@@ -51,7 +51,7 @@ services:
       dockerfile: nest.Dockerfile
     volumes:
       - .:/app
-    working_dir: /app/nest
+    working_dir: /app/nest-app
     logging: *default-logging
     command: yarn start:dev
     tty: true
