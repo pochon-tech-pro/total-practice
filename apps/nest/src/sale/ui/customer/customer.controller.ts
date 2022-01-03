@@ -14,7 +14,9 @@ export class CustomerController {
   constructor(private readonly customerService: CustomerService) {}
 
   @Get()
-  async find(@Query() query: QueryParameters): Promise<ResponseSchema<Customer>> {
+  async find(
+    @Query() query: QueryParameters,
+  ): Promise<ResponseSchema<Customer>> {
     const customer = await this.customerService.find(query);
     return {
       isSuccess: true,
