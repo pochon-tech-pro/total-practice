@@ -21,7 +21,11 @@ paths:
             type: string
       responses:
         '200':
-          description: 成功
+          description: 取得成功
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GetCustomerResponse'
     post:
       tags: [ "Customer" ]
       summary: 顧客情報登録
@@ -47,6 +51,20 @@ paths:
 
 components:
   schemas:
+    GetCustomerResponse:
+      type: object
+      description: 顧客情報取得APIのレスポンススキーマ
+      properties:
+        isSuccess:
+          type: boolean
+          description: 成功判定
+          example: true
+        message:
+          type: string
+          description: エラーメッセージ等（成功時は基本空文字列）
+          example: ''
+        body:
+          $ref: "#/components/schemas/Customer"
     Customer:
       type: object
       description: 記事
