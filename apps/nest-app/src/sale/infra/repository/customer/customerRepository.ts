@@ -14,10 +14,19 @@ export class CustomerRepository implements ICustomerRepository {
   }
 
   async save(customer: Customer): Promise<void> {
-    console.log('save');
+    await getRepository(CustomerEntity).save(
+      CustomerRepository.toEntity(customer),
+    );
   }
 
   private static toCustomer(entity?: CustomerEntity): Customer {
     return Customer.create(Tel.create(entity.tel), entity.name);
+  }
+
+  private static toEntity(customer: Customer): CustomerEntity {
+    const entity = new CustomerEntity();
+    entity.name = customer.name();
+    entity.tel = customer.tel().value();
+    return entity;
   }
 }

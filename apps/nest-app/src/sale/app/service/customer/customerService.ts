@@ -16,7 +16,8 @@ export class CustomerService {
   }
 
   async save(): Promise<void> {
-    await this.repository.save(Customer.nullObject());
-    console.log('app.service: save');
+    await this.repository.save(
+      Customer.create(Tel.create('11-2222-3333'), 'test'),
+    );
   }
 }
