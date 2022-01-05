@@ -3,6 +3,7 @@ import { Customer } from '../../../domain/model/customer';
 import { QueryParameters } from '../../../ui/customer/queryParameters';
 import { Tel } from '../../../domain/type/tel';
 import { ICustomerRepository } from '../../repository/customer/customerRepository';
+import { Name } from '../../../domain/type/name';
 
 @Injectable()
 export class CustomerService {
@@ -17,7 +18,7 @@ export class CustomerService {
 
   async save(): Promise<void> {
     await this.repository.save(
-      Customer.create(Tel.create('11-2222-3333'), 'test'),
+      Customer.create(Tel.create('11-2222-3333'), Name.create('test')),
     );
   }
 }
