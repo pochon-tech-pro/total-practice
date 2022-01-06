@@ -21,4 +21,20 @@ describe('会員', () => {
       expect(customer.tel().value()).toBe('03-1111-2222');
     });
   });
+
+  describe('NullObjectの検証', () => {
+    let customer;
+
+    beforeAll(() => {
+      customer = Customer.nullObject();
+    });
+
+    it('名前が空文字列である', async () => {
+      expect(customer.name().value()).toBe('');
+    });
+
+    it('電話番号が空文字列である', async () => {
+      expect(customer.tel().value()).toBe('');
+    });
+  });
 });
