@@ -9,9 +9,9 @@ const sample: Customer[] = [
 
 const App: React.VFC = () => {
     return (
-        <React.Fragment>
+        <div className={"container-fluid"}>
             <CustomerList customers={sample}/>
-        </React.Fragment>
+        </div>
     );
 }
 

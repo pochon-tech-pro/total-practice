@@ -11,7 +11,7 @@ const CustomerList: React.VFC<Props> = props => {
     return (
         <React.Fragment>
             <h4>顧客一覧</h4>
-            <table>
+            <table className={"table table-hover"}>
                 <thead>
                 <tr>
                     <th>顧客名</th>
