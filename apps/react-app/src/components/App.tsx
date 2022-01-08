@@ -1,6 +1,7 @@
 import React from "react";
-import CustomerRows from "./CustomerRows";
 import {Customer} from "../type/customer";
+import CustomerForm from "./CustomerForm";
+import CustomerRows from "./CustomerRows";
 
 const sample: Customer[] = [
     {name: 'userA', tel: '03-0001-0001'},
@@ -10,6 +11,7 @@ const sample: Customer[] = [
 const App: React.VFC = () => {
     return (
         <div className={"container-fluid"}>
+            <CustomerForm />
             <CustomerRows customers={sample}/>
         </div>
     );
