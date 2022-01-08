@@ -1,18 +1,15 @@
-import React from "react";
-import {Customer} from "../type/customer";
+import React, {useReducer} from "react";
 import CustomerForm from "./CustomerForm";
 import CustomerRows from "./CustomerRows";
+import reducer from "../reducers";
 
-const sample: Customer[] = [
-    {name: 'userA', tel: '03-0001-0001'},
-    {name: 'userB', tel: '03-0002-0002'}
-]
+const App: React.FC = () => {
+    const [state, dispatch] = useReducer(reducer, []);
 
-const App: React.VFC = () => {
     return (
         <div className={"container-fluid"}>
-            <CustomerForm />
-            <CustomerRows customers={sample}/>
+            <CustomerForm dispatch={dispatch} />
+            <CustomerRows state={state}/>
         </div>
     );
 }

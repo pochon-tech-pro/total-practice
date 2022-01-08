@@ -1,11 +1,27 @@
 import React, {useState} from "react";
+import {CustomerAction} from "../reducers";
 
-const CustomerForm: React.FC = () => {
+interface Props {
+    dispatch: React.Dispatch<CustomerAction>
+}
+
+const CustomerForm: React.FC<Props> = ({dispatch}) => {
     const [name, setName] = useState('');
     const [tel, setTel] = useState('');
 
     const changeName = (e: React.ChangeEvent<HTMLInputElement>) => setName(e.target.value);
     const changeTel = (e: React.ChangeEvent<HTMLInputElement>) => setTel(e.target.value);
+    const submitCustomer = (e: React.MouseEvent<HTMLButtonElement>) => {
+        e.preventDefault();
+        const action: CustomerAction = {
+            type: 'CREATE_CUSTOMER',
+            payload: {name, tel}
+        }
+        dispatch(action);
+
+        setName('');
+        setTel('');
+    }
 
     return (
         <React.Fragment>
@@ -20,6 +36,9 @@ const CustomerForm: React.FC = () => {
                     <label htmlFor={"customerTel"}>TEL</label>
                     <input id={"customerTel"} type={"text"} value={tel} className={"form-control"}
                            onChange={changeTel}/>
+                </div>
+                <div className={"form-group"}>
+                    <button className={"btn btn-primary"} onClick={submitCustomer}>登録</button>
                 </div>
             </form>
         </React.Fragment>

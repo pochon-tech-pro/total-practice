@@ -1,14 +1,12 @@
 import React from "react";
-import {Customer} from "../type/customer";
 import CustomerRow from "./CustomerRow";
+import {CustomerState} from "../reducers";
 
 interface Props {
-    customers: Customer[]
+    state: CustomerState
 }
 
-const CustomerRows: React.VFC<Props> = props => {
-    const {customers} = props;
-
+const CustomerRows: React.VFC<Props> = ({state}) => {
     return (
         <React.Fragment>
             <h4>顧客一覧</h4>
@@ -21,7 +19,7 @@ const CustomerRows: React.VFC<Props> = props => {
                 </thead>
                 <tbody>
                 {
-                    customers.map(
+                    state.map(
                         (customer, index) => <CustomerRow key={index} name={customer.name} tel={customer.tel}/>
                     )
                 }
