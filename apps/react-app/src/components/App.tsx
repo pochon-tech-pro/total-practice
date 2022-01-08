@@ -7,7 +7,7 @@ const App: React.FC = () => {
     const [state, dispatch] = useReducer(reducer, []);
 
     return (
-        <div className={"container-fluid"}>
+        <div className={"container"}>
             <CustomerForm dispatch={dispatch} />
             <CustomerRows state={state}/>
         </div>
