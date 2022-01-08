@@ -1,11 +1,12 @@
 import React from "react";
 import {Customer} from "../type/customer";
+import CustomerRow from "./CustomerRow";
 
 interface Props {
     customers: Customer[]
 }
 
-const CustomerList: React.VFC<Props> = props => {
+const CustomerRows: React.VFC<Props> = props => {
     const {customers} = props;
 
     return (
@@ -19,14 +20,11 @@ const CustomerList: React.VFC<Props> = props => {
                 </tr>
                 </thead>
                 <tbody>
-                {customers.map(customer => {
-                    return (
-                        <tr>
-                            <td>{customer.name}</td>
-                            <td>{customer.tel}</td>
-                        </tr>
-                    );
-                })}
+                {
+                    customers.map(
+                        (customer, index) => <CustomerRow key={index} name={customer.name} tel={customer.tel}/>
+                    )
+                }
                 </tbody>
             </table>
 
@@ -34,4 +32,4 @@ const CustomerList: React.VFC<Props> = props => {
     );
 }
 
-export default CustomerList;
+export default CustomerRows;

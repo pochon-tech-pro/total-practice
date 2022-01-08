@@ -1,5 +1,5 @@
 import React from "react";
-import CustomerList from "./CustomerList";
+import CustomerRows from "./CustomerRows";
 import {Customer} from "../type/customer";
 
 const sample: Customer[] = [
@@ -10,7 +10,7 @@ const sample: Customer[] = [
 const App: React.VFC = () => {
     return (
         <div className={"container-fluid"}>
-            <CustomerList customers={sample}/>
+            <CustomerRows customers={sample}/>
         </div>
     );
 }
