@@ -54,6 +54,8 @@ services:
     working_dir: /app/nest-app
     logging: *default-logging
     command: yarn start:dev
+    environment:
+      FRONTEND_URI: 'http://localhost:8000'
     tty: true
     depends_on:
       - mysql
