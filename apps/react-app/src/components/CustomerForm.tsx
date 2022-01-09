@@ -1,5 +1,6 @@
 import React, {useState} from "react";
 import {CustomerAction} from "../reducers";
+import PrimaryButton from "./PrimaryButton";
 
 interface Props {
     dispatch: React.Dispatch<CustomerAction>
@@ -38,7 +39,7 @@ const CustomerForm: React.FC<Props> = ({dispatch}) => {
                            onChange={changeTel}/>
                 </div>
                 <div className={"form-group"}>
-                    <button className={"btn btn-primary"} onClick={submitCustomer}>登録</button>
+                    <PrimaryButton name={'登録'} onClickHandler={submitCustomer}/>
                 </div>
             </form>
         </React.Fragment>
