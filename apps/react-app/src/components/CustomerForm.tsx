@@ -12,8 +12,11 @@ const CustomerForm: React.FC<Props> = ({dispatch}) => {
 
     const changeName = (e: React.ChangeEvent<HTMLInputElement>) => setName(e.target.value);
     const changeTel = (e: React.ChangeEvent<HTMLInputElement>) => setTel(e.target.value);
-    const submitCustomer = (e: React.MouseEvent<HTMLButtonElement>) => {
+    const createCustomer = (e: React.MouseEvent<HTMLButtonElement>) => {
         e.preventDefault();
+        if (unCreatable) {
+            return false;
+        }
         const action: CustomerAction = {
             type: 'CREATE_CUSTOMER',
             payload: {name, tel}
@@ -23,6 +26,7 @@ const CustomerForm: React.FC<Props> = ({dispatch}) => {
         setName('');
         setTel('');
     }
+    const unCreatable = name === '' || tel === '';
 
     return (
         <React.Fragment>
@@ -39,7 +43,7 @@ const CustomerForm: React.FC<Props> = ({dispatch}) => {
                            onChange={changeTel}/>
                 </div>
                 <div className={"form-group"}>
-                    <PrimaryButton name={'登録'} onClickHandler={submitCustomer}/>
+                    <PrimaryButton name={'登録'} onClickHandler={createCustomer} disabled={unCreatable}/>
                 </div>
             </form>
         </React.Fragment>
