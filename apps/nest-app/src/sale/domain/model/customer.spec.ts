@@ -8,6 +8,7 @@ describe('会員', () => {
 
     beforeAll(() => {
       customer = Customer.create(
+        1,
         Tel.create('03-1111-2222'),
         Name.create('山田太郎'),
       );

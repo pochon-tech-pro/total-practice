@@ -21,7 +21,11 @@ export class CustomerRepository implements ICustomerRepository {
   }
 
   private static toCustomer(entity?: CustomerEntity): Customer {
-    return Customer.create(Tel.create(entity.tel), Name.create(entity.name));
+    return Customer.create(
+      entity.id,
+      Tel.create(entity.tel),
+      Name.create(entity.name),
+    );
   }
 
   private static toEntity(customer: Customer): CustomerEntity {

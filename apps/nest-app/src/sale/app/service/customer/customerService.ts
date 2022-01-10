@@ -18,7 +18,7 @@ export class CustomerService {
 
   async save(): Promise<void> {
     await this.repository.save(
-      Customer.create(Tel.create('11-2222-3333'), Name.create('test')),
+      Customer.create(1, Tel.create('11-2222-3333'), Name.create('test')),
     );
   }
 }
