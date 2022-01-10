@@ -18,4 +18,8 @@ export class CustomerList {
   public value(): Customer[] {
     return this._list;
   }
+
+  public first(): Customer {
+    return this._list.length > 0 ? this._list[0] : Customer.nullObject();
+  }
 }
