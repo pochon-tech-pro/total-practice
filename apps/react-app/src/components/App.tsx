@@ -2,6 +2,7 @@ import React, {useEffect, useReducer} from "react";
 import CustomerForm from "./CustomerForm";
 import CustomerRows from "./CustomerRows";
 import reducer, {CustomerAction} from "../reducers";
+import {CREATE_CUSTOMER} from "../actions";
 
 const getCustomerListAPI = async (dispatch: React.Dispatch<CustomerAction>) => {
     try {
@@ -13,7 +14,7 @@ const getCustomerListAPI = async (dispatch: React.Dispatch<CustomerAction>) => {
         };
         data.body.forEach((customer) => {
             dispatch({
-                type: 'CREATE_CUSTOMER',
+                type: CREATE_CUSTOMER,
                 payload: {name: customer.name, tel: customer.tel}
             })
         });

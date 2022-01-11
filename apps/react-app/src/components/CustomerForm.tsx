@@ -1,6 +1,7 @@
 import React, {useState} from "react";
 import {CustomerAction} from "../reducers";
 import PrimaryButton from "./PrimaryButton";
+import {CREATE_CUSTOMER} from "../actions";
 
 interface Props {
     dispatch: React.Dispatch<CustomerAction>
@@ -18,7 +19,7 @@ const CustomerForm: React.FC<Props> = ({dispatch}) => {
             return false;
         }
         const action: CustomerAction = {
-            type: 'CREATE_CUSTOMER',
+            type: CREATE_CUSTOMER,
             payload: {name, tel}
         }
         dispatch(action);
