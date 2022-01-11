@@ -20,6 +20,10 @@ export class Customer {
     return new Customer(0, Tel.nullObject(), Name.nullObject());
   }
 
+  public id(): number {
+    return this._id;
+  }
+
   public tel(): Tel {
     return this._tel;
   }

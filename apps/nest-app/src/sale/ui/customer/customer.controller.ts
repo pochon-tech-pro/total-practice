@@ -1,8 +1,7 @@
-import { Controller, Get, Inject, Post, Query } from '@nestjs/common';
+import { Controller, Get, Post, Query } from '@nestjs/common';
 import { QueryParameters } from './queryParameters';
 import { CustomerService } from '../../app/service/customer/customerService';
 import { Customer } from '../../domain/model/customer';
-import { CustomerList } from '../../domain/model/customerList';
 
 type ResponseSchema<T> = {
   isSuccess: boolean;
@@ -27,12 +26,19 @@ export class CustomerController {
   }
 
   @Get('all')
-  async all(): Promise<ResponseSchema<CustomerList>> {
+  async all(): Promise<
+    ResponseSchema<{ id: number; name: string; tel: string }[]>
+  > {
     const customerList = await this.customerService.findAll();
+    const responseBody = customerList.value().map((customer) => ({
+      id: customer.id(),
+      name: customer.name().value(),
+      tel: customer.tel().value(),
+    }));
     return {
       isSuccess: true,
       message: '',
-      body: customerList,
+      body: responseBody,
     };
   }
 
