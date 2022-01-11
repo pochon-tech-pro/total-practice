@@ -1,6 +1,11 @@
 import React, {useState} from "react";
 import PrimaryButton from "./PrimaryButton";
 
+const HeaderInlineStyle = {
+    color: "#8c2eff",
+    margin: "8px 8px 8px 0",
+}
+
 const CustomerForm: React.FC = () => {
     const [name, setName] = useState('');
     const [tel, setTel] = useState('');
@@ -26,7 +31,7 @@ const CustomerForm: React.FC = () => {
 
     return (
         <React.Fragment>
-            <h4>顧客登録</h4>
+            <h4 style={HeaderInlineStyle}>顧客登録</h4>
             <form className={""}>
                 <div className={"form-group"}>
                     <label htmlFor={"customerName"}>顧客名</label>
