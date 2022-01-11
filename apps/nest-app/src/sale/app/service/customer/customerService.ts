@@ -4,7 +4,7 @@ import { QueryParameters } from '../../../ui/customer/queryParameters';
 import { Tel } from '../../../domain/type/tel';
 import { ICustomerRepository } from '../../repository/customer/customerRepository';
 import { Name } from '../../../domain/type/name';
-import { CustomerList } from "../../../domain/model/customerList";
+import { CustomerList } from '../../../domain/model/customerList';
 
 @Injectable()
 export class CustomerService {
