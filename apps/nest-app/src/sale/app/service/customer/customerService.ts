@@ -4,6 +4,7 @@ import { QueryParameters } from '../../../ui/customer/queryParameters';
 import { Tel } from '../../../domain/type/tel';
 import { ICustomerRepository } from '../../repository/customer/customerRepository';
 import { Name } from '../../../domain/type/name';
+import { CustomerList } from "../../../domain/model/customerList";
 
 @Injectable()
 export class CustomerService {
@@ -14,6 +15,10 @@ export class CustomerService {
 
   async find(params: QueryParameters): Promise<Customer> {
     return this.repository.findByTel(Tel.create(params.tel));
+  }
+
+  async findAll(): Promise<CustomerList> {
+    return this.repository.findAll();
   }
 
   async save(): Promise<void> {

@@ -5,6 +5,7 @@ import { Customer } from '../../../domain/model/customer';
 import { CustomerEntity } from '../../entities/customer/customer.entity';
 import { getRepository } from 'typeorm';
 import { Name } from '../../../domain/type/name';
+import { CustomerList } from '../../../domain/model/customerList';
 
 @Injectable()
 export class CustomerRepository implements ICustomerRepository {
@@ -14,10 +15,21 @@ export class CustomerRepository implements ICustomerRepository {
     );
   }
 
+  async findAll(): Promise<CustomerList> {
+    return CustomerRepository.toCustomerList(
+      await getRepository(CustomerEntity).find(),
+    );
+  }
+
   async save(customer: Customer): Promise<void> {
     await getRepository(CustomerEntity).save(
       CustomerRepository.toEntity(customer),
     );
+  }
+
+  private static toCustomerList(entity?: CustomerEntity[]): CustomerList {
+    console.log(entity);
+    return CustomerList.nullObject();
   }
 
   private static toCustomer(entity?: CustomerEntity): Customer {
