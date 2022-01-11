@@ -3,9 +3,9 @@ import CustomerForm from "./CustomerForm";
 import CustomerRows from "./CustomerRows";
 import reducer from "../reducers";
 
-const getCustomerAPI = async () => {
+const getCustomerListAPI = async () => {
     try {
-        const res = await fetch("http://localhost:3000/customer?tel=03-1111-2222");
+        const res = await fetch("http://localhost:3000/customer/all");
         const data = await res.json();
         console.log(data);
     } catch (e) {
@@ -17,7 +17,7 @@ const App: React.FC = () => {
     const [state, dispatch] = useReducer(reducer, []);
 
     useEffect(() => {
-        (async () => await getCustomerAPI())();
+        (async () => await getCustomerListAPI())();
     }, []);
 
     return (
