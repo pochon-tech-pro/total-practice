@@ -1,13 +1,7 @@
 import React, {useState} from "react";
-import {CustomerAction} from "../reducers";
 import PrimaryButton from "./PrimaryButton";
-import {CREATE_CUSTOMER} from "../actions";
 
-interface Props {
-    dispatch: React.Dispatch<CustomerAction>
-}
-
-const CustomerForm: React.FC<Props> = ({dispatch}) => {
+const CustomerForm: React.FC = () => {
     const [name, setName] = useState('');
     const [tel, setTel] = useState('');
 
@@ -18,11 +12,12 @@ const CustomerForm: React.FC<Props> = ({dispatch}) => {
         if (unCreatable) {
             return false;
         }
-        const action: CustomerAction = {
-            type: CREATE_CUSTOMER,
-            payload: {name, tel}
-        }
-        dispatch(action);
+        // TODO: POST処理に置き換える。
+        // const action: CustomerAction = {
+        //     type: FETCH_CUSTOMER,
+        //     payload: {name, tel}
+        // }
+        // dispatch(action);
 
         setName('');
         setTel('');

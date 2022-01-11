@@ -1,1 +1,1 @@
-export const CREATE_CUSTOMER = 'CREATE_CUSTOMER';
+export const FETCH_CUSTOMER = 'FETCH_CUSTOMER';

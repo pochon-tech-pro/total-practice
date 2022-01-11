@@ -1,16 +1,16 @@
 import {Customer} from "../type/customer";
-import {CREATE_CUSTOMER} from "../actions";
+import {FETCH_CUSTOMER} from "../actions";
 
 export type CustomerAction = {
     type: string
-    payload: Customer
+    payload: Customer[]
 };
 export type CustomerState = Customer[];
 
 const reducer = (state: CustomerState = [], action: CustomerAction) => {
     switch (action.type) {
-        case CREATE_CUSTOMER:
-            return [...state, {name: action.payload.name, tel: action.payload.tel}];
+        case FETCH_CUSTOMER:
+            return [...state, ...action.payload];
         default:
             return state;
     }

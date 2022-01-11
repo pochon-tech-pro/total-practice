@@ -2,7 +2,8 @@ import React, {useEffect, useReducer} from "react";
 import CustomerForm from "./CustomerForm";
 import CustomerRows from "./CustomerRows";
 import reducer, {CustomerAction} from "../reducers";
-import {CREATE_CUSTOMER} from "../actions";
+import {FETCH_CUSTOMER} from "../actions";
+import {Customer} from "../type/customer";
 
 const getCustomerListAPI = async (dispatch: React.Dispatch<CustomerAction>) => {
     try {
@@ -12,14 +13,14 @@ const getCustomerListAPI = async (dispatch: React.Dispatch<CustomerAction>) => {
             message: string
             body: { id: number; name: string; tel: string; }[]
         };
-        data.body.forEach((customer) => {
-            dispatch({
-                type: CREATE_CUSTOMER,
-                payload: {name: customer.name, tel: customer.tel}
-            })
+        const payload: Customer[] = data.body.map(item => ({
+            name: item.name,
+            tel: item.tel
+        }))
+        dispatch({
+            type: FETCH_CUSTOMER,
+            payload: payload
         });
-
-        console.log(data);
     } catch (e) {
         console.log(e)
     }
@@ -34,7 +35,7 @@ const App: React.FC = () => {
 
     return (
         <div className={"container"}>
-            <CustomerForm dispatch={dispatch}/>
+            <CustomerForm />
             <CustomerRows state={state}/>
         </div>
     );
