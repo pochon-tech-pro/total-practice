@@ -27,9 +27,12 @@ export class CustomerRepository implements ICustomerRepository {
     );
   }
 
-  private static toCustomerList(entity?: CustomerEntity[]): CustomerList {
-    console.log(entity);
-    return CustomerList.nullObject();
+  private static toCustomerList(entities?: CustomerEntity[]): CustomerList {
+    return entities.length > 0
+      ? CustomerList.create(
+          ...entities.map((entity) => this.toCustomer(entity)),
+        )
+      : CustomerList.nullObject();
   }
 
   private static toCustomer(entity?: CustomerEntity): Customer {
