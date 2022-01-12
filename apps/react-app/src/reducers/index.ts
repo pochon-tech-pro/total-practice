@@ -10,7 +10,7 @@ export type CustomerState = Customer[];
 const reducer = (state: CustomerState = [], action: CustomerAction) => {
     switch (action.type) {
         case FETCH_CUSTOMER:
-            return [...state, ...action.payload];
+            return [...action.payload];
         default:
             return state;
     }

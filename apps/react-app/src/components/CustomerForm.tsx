@@ -1,13 +1,18 @@
 import React, {useState} from "react";
 import PrimaryButton from "./PrimaryButton";
 import {postCustomerAPI} from "../api";
+import {CustomerAction} from "../reducers";
 
 const HeaderInlineStyle = {
     color: "#8c2eff",
     margin: "8px 8px 8px 0",
 }
 
-const CustomerForm: React.FC = () => {
+interface Props {
+    fetchCustomer: (dispatch: React.Dispatch<CustomerAction>) => Promise<void>
+    dispatch: React.Dispatch<CustomerAction>
+}
+const CustomerForm: React.FC<Props> = ({fetchCustomer, dispatch}) => {
     const [name, setName] = useState('');
     const [tel, setTel] = useState('');
 
@@ -19,9 +24,12 @@ const CustomerForm: React.FC = () => {
             return false;
         }
 
-        const res = postCustomerAPI({name, tel});
-        setName('');
-        setTel('');
+        const res = await postCustomerAPI({name, tel});
+        if (res) {
+            await fetchCustomer(dispatch);
+            setName('');
+            setTel('');
+        }
     }
 
     const unCreatable = name === '' || tel === '';

@@ -5,7 +5,7 @@ import reducer, {CustomerAction} from "../reducers";
 import {FETCH_CUSTOMER} from "../actions";
 import {getCustomerAPI} from "../api";
 
-const getCustomerListAPI = async (dispatch: React.Dispatch<CustomerAction>) => {
+const fetchCustomer = async (dispatch: React.Dispatch<CustomerAction>): Promise<void> => {
     try {
         const customerList = await getCustomerAPI();
         dispatch({
@@ -21,12 +21,12 @@ const App: React.FC = () => {
     const [state, dispatch] = useReducer(reducer, []);
 
     useEffect(() => {
-        (async () => await getCustomerListAPI(dispatch))();
+        (async () => await fetchCustomer(dispatch))();
     }, []);
 
     return (
         <div className={"container"}>
-            <CustomerForm />
+            <CustomerForm fetchCustomer={fetchCustomer} dispatch={dispatch} />
             <CustomerRows state={state}/>
         </div>
     );
