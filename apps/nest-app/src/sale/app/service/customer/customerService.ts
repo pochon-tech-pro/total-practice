@@ -5,6 +5,7 @@ import { Tel } from '../../../domain/type/tel';
 import { ICustomerRepository } from '../../repository/customer/customerRepository';
 import { Name } from '../../../domain/type/name';
 import { CustomerList } from '../../../domain/model/customerList';
+import { PostParameters } from '../../../ui/customer/postParameters';
 
 @Injectable()
 export class CustomerService {
@@ -21,9 +22,10 @@ export class CustomerService {
     return this.repository.findAll();
   }
 
-  async save(): Promise<void> {
+  async save(body: PostParameters): Promise<void> {
+    console.log(body);
     await this.repository.save(
-      Customer.create(1, Tel.create('11-2222-3333'), Name.create('test')),
+      Customer.create(null, Tel.create(body.tel), Name.create(body.name)),
     );
   }
 }

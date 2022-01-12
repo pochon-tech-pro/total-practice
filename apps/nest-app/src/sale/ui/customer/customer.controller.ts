@@ -1,7 +1,8 @@
-import { Controller, Get, Post, Query } from '@nestjs/common';
+import { Body, Controller, Get, Post, Query } from '@nestjs/common';
 import { QueryParameters } from './queryParameters';
 import { CustomerService } from '../../app/service/customer/customerService';
 import { Customer } from '../../domain/model/customer';
+import { PostParameters } from './postParameters';
 
 type ResponseSchema<T> = {
   isSuccess: boolean;
@@ -43,7 +44,13 @@ export class CustomerController {
   }
 
   @Post()
-  async save(@Query() query: QueryParameters) {
-    console.log(await this.customerService.save());
+  async save(@Body() body: PostParameters): Promise<ResponseSchema<string>> {
+    // curl -X POST -H "Content-Type: application/json" -d '{"name": "佐藤", "tel":"01-1234-9876"}' localhost:3000/customer/
+    await this.customerService.save(body);
+    return {
+      isSuccess: true,
+      message: '',
+      body: '',
+    };
   }
 }
