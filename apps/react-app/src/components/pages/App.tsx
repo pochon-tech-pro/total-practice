@@ -1,9 +1,9 @@
 import React, {useEffect, useReducer} from "react";
-import CustomerForm from "./CustomerForm";
-import CustomerRows from "./CustomerRows";
-import reducer from "../reducers";
-import {FETCH_CUSTOMER} from "../actions";
-import {getCustomerAPI} from "../api";
+import CustomerForm from "../organisms/CustomerForm";
+import CustomerRows from "../organisms/CustomerRows";
+import reducer from "../../reducers";
+import {FETCH_CUSTOMER} from "../../actions";
+import {getCustomerAPI} from "../../api";
 
 const App: React.FC = () => {
     const [state, dispatch] = useReducer(reducer, []);

@@ -1,6 +1,6 @@
 import React from "react";
-import CustomerRow from "./CustomerRow";
-import {CustomerState} from "../reducers";
+import CustomerRow from "../molecules/CustomerRow";
+import {CustomerState} from "../../reducers";
 
 interface Props {
     state: CustomerState

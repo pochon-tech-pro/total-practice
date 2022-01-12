@@ -1,7 +1,7 @@
 import React, {useState} from "react";
-import PrimaryButton from "./atoms/PrimaryButton";
-import {getCustomerAPI, postCustomerAPI} from "../api";
-import {CustomerAction, FETCH_CUSTOMER} from "../actions";
+import PrimaryButton from "../atoms/PrimaryButton";
+import {getCustomerAPI, postCustomerAPI} from "../../api";
+import {CustomerAction, FETCH_CUSTOMER} from "../../actions";
 
 const HeaderInlineStyle = {
     color: "#8c2eff",
