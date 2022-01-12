@@ -1,10 +1,6 @@
 import {Customer} from "../type/customer";
-import {FETCH_CUSTOMER} from "../actions";
+import {CustomerAction, FETCH_CUSTOMER} from "../actions";
 
-export type CustomerAction = {
-    type: string
-    payload: Customer[]
-};
 export type CustomerState = Customer[];
 
 const reducer = (state: CustomerState = [], action: CustomerAction) => {
