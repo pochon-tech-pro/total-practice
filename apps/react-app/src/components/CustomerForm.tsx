@@ -12,20 +12,30 @@ const CustomerForm: React.FC = () => {
 
     const changeName = (e: React.ChangeEvent<HTMLInputElement>) => setName(e.target.value);
     const changeTel = (e: React.ChangeEvent<HTMLInputElement>) => setTel(e.target.value);
-    const createCustomer = (e: React.MouseEvent<HTMLButtonElement>) => {
+    const createCustomer = async (e: React.MouseEvent<HTMLButtonElement>) => {
         e.preventDefault();
         if (unCreatable) {
             return false;
         }
-        // TODO: POST処理に置き換える。
-        // const action: CustomerAction = {
-        //     type: FETCH_CUSTOMER,
-        //     payload: {name, tel}
-        // }
-        // dispatch(action);
+
+        const res = await fetch("http://localhost:3000/customer/", {
+            method: 'POST',
+            headers: {'Content-Type': 'application/json'},
+            body: JSON.stringify({name, tel}),
+        });
+        const data = await res.json() as {
+            isSuccess: boolean
+            message: string
+            body: string
+        };
+
+        if (data.isSuccess) {
+            alert('登録に成功しました。');
+        }
 
         setName('');
         setTel('');
+
     }
     const unCreatable = name === '' || tel === '';
 
