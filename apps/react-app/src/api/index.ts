@@ -1,14 +1,15 @@
 import {Customer} from "../type/customer";
+import axios from "axios";
 
 export const getCustomerAPI = async (): Promise<Customer[]> => {
     try {
-        const res = await fetch("http://localhost:3000/customer/all");
-        const data = await res.json() as {
-            isSuccess: boolean
-            message: string
-            body: { id: number; name: string; tel: string; }[]
-        };
-        return data.body.map(item => ({
+        const res  = await axios.get<{
+            isSuccess: boolean;
+            message: string;
+            body: { id: number; name: string; tel: string; }[];
+        }>("http://localhost:3000/customer/all");
+
+        return res.data.body.map(item => ({
             name: item.name,
             tel: item.tel
         }));
