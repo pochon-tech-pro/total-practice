@@ -3,23 +3,14 @@ import CustomerForm from "./CustomerForm";
 import CustomerRows from "./CustomerRows";
 import reducer, {CustomerAction} from "../reducers";
 import {FETCH_CUSTOMER} from "../actions";
-import {Customer} from "../type/customer";
+import {getCustomerAPI} from "../api";
 
 const getCustomerListAPI = async (dispatch: React.Dispatch<CustomerAction>) => {
     try {
-        const res = await fetch("http://localhost:3000/customer/all");
-        const data = await res.json() as {
-            isSuccess: boolean
-            message: string
-            body: { id: number; name: string; tel: string; }[]
-        };
-        const payload: Customer[] = data.body.map(item => ({
-            name: item.name,
-            tel: item.tel
-        }))
+        const customerList = await getCustomerAPI();
         dispatch({
             type: FETCH_CUSTOMER,
-            payload: payload
+            payload: customerList
         });
     } catch (e) {
         console.log(e)

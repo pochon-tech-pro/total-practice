@@ -1,5 +1,6 @@
 import React, {useState} from "react";
 import PrimaryButton from "./PrimaryButton";
+import {postCustomerAPI} from "../api";
 
 const HeaderInlineStyle = {
     color: "#8c2eff",
@@ -18,25 +19,11 @@ const CustomerForm: React.FC = () => {
             return false;
         }
 
-        const res = await fetch("http://localhost:3000/customer/", {
-            method: 'POST',
-            headers: {'Content-Type': 'application/json'},
-            body: JSON.stringify({name, tel}),
-        });
-        const data = await res.json() as {
-            isSuccess: boolean
-            message: string
-            body: string
-        };
-
-        if (data.isSuccess) {
-            alert('登録に成功しました。');
-        }
-
+        const res = postCustomerAPI({name, tel});
         setName('');
         setTel('');
-
     }
+
     const unCreatable = name === '' || tel === '';
 
     return (
