@@ -1,8 +1,7 @@
 import React, {useState} from "react";
 import PrimaryButton from "./PrimaryButton";
 import {getCustomerAPI, postCustomerAPI} from "../api";
-import {CustomerAction} from "../reducers";
-import {FETCH_CUSTOMER} from "../actions";
+import {CustomerAction, FETCH_CUSTOMER} from "../actions";
 
 const HeaderInlineStyle = {
     color: "#8c2eff",
