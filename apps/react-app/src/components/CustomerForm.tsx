@@ -1,5 +1,5 @@
 import React, {useState} from "react";
-import PrimaryButton from "./PrimaryButton";
+import PrimaryButton from "./atoms/PrimaryButton";
 import {getCustomerAPI, postCustomerAPI} from "../api";
 import {CustomerAction, FETCH_CUSTOMER} from "../actions";
 
@@ -52,7 +52,7 @@ const CustomerForm: React.FC<Props> = ({dispatch}) => {
                            onChange={changeTel}/>
                 </div>
                 <div className={"form-group"}>
-                    <PrimaryButton name={'登録'} onClickHandler={createCustomer} disabled={unCreatable}/>
+                    <PrimaryButton onClickHandler={createCustomer} disabled={unCreatable}>登録</PrimaryButton>
                 </div>
             </form>
         </React.Fragment>
