@@ -20,6 +20,7 @@ services:
     volumes:
       - ./db/mysql_data:/var/lib/mysql
       - ./db/docker-entrypoint-initdb.d:/docker-entrypoint-initdb.d
+      - ./db/my.cnf:/etc/mysql/conf.d/my.cnf
 
   swagger-ui:
     image: swaggerapi/swagger-ui
