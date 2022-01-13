@@ -26,16 +26,23 @@ func connect() {
 	}
 }
 
+type Customer struct {
+	Id   int    `json:"id"`
+	Name string `json:"name"`
+	Tel  string `json:"tel"`
+}
+
 func hello(c echo.Context) error {
 	connect()
 	sqlDB, _ := DB.DB()
 	defer sqlDB.Close()
 	err := sqlDB.Ping()
-
 	if err != nil {
 		return c.String(http.StatusInternalServerError, "データベース接続失敗")
 	} else {
-		return c.String(http.StatusOK, "Hello, World!")
+		var customers []Customer
+		DB.Find(&customers)
+		return c.JSON(http.StatusOK, customers)
 	}
 }
 
