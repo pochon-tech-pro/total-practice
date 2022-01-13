@@ -3,6 +3,7 @@ package main
 import (
 	"fmt"
 	"net/http"
+	"os"
 
 	"github.com/labstack/echo/v4"
 	"gorm.io/driver/mysql"
@@ -12,14 +13,14 @@ import (
 var DB *gorm.DB
 
 func connect() {
-	db := "db"
-	user := "user"
-	pass := "pass"
+	var err error
+	dbname := os.Getenv("MYSQL_DATABASE")
+	user := os.Getenv("MYSQL_USER")
+	pass := os.Getenv("MYSQL_PASSWORD")
 	host := "mysql"
 	port := "3306"
 
-	dsn := user + ":" + pass + "@tcp(" + host + ":" + port + ")/" + db + "?charset=utf8mb4"
-	var err error
+	dsn := user + ":" + pass + "@tcp(" + host + ":" + port + ")/" + dbname + "?charset=utf8mb4"
 	DB, err = gorm.Open(mysql.Open(dsn), &gorm.Config{})
 	if err != nil {
 		fmt.Println(err.Error())
