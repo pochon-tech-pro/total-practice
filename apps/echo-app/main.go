@@ -1,17 +1,17 @@
 package main
 
 import (
-	"log"
 	"net/http"
+
+	"github.com/labstack/echo/v4"
 )
 
-func rootHandler(w http.ResponseWriter, r *http.Request) {
-	w.WriteHeader(200)
-	w.Header().Set("Content-Type", "text/html; charset=utf8")
-	w.Write([]byte("こんにちは"))
+func hello(c echo.Context) error {
+	return c.String(http.StatusOK, "Hello, World!")
 }
 
 func main() {
-	http.HandleFunc("/", rootHandler)
-	log.Fatal(http.ListenAndServe(":3001", nil))
+	e := echo.New()
+	e.GET("/", hello)
+	e.Logger.Fatal(e.Start(":3001"))
 }
