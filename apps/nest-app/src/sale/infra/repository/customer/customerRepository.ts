@@ -27,6 +27,10 @@ export class CustomerRepository implements ICustomerRepository {
     );
   }
 
+  async deleteAll(): Promise<void> {
+    await getRepository(CustomerEntity).clear();
+  }
+
   private static toCustomerList(entities?: CustomerEntity[]): CustomerList {
     return entities.length > 0
       ? CustomerList.create(

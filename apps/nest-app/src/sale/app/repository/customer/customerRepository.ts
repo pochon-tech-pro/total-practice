@@ -8,6 +8,8 @@ export interface ICustomerRepository {
   findAll(): Promise<CustomerList>;
 
   save(customer: Customer): Promise<void>;
+
+  deleteAll(): Promise<void>;
 }
 
 export const ICustomerRepository = Symbol('ICustomerRepository');

@@ -53,4 +53,14 @@ export class CustomerController {
       body: '',
     };
   }
+
+  @Post('all.delete')
+  async allDelete(): Promise<ResponseSchema<string>> {
+    await this.customerService.allDelete();
+    return {
+      isSuccess: true,
+      message: '',
+      body: '',
+    };
+  }
 }

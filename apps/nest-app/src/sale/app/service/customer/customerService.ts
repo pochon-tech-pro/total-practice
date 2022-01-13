@@ -23,9 +23,19 @@ export class CustomerService {
   }
 
   async save(body: PostParameters): Promise<void> {
-    console.log(body);
     await this.repository.save(
       Customer.create(null, Tel.create(body.tel), Name.create(body.name)),
+    );
+  }
+
+  async allDelete() {
+    await this.repository.deleteAll();
+    await this.repository.save(
+      Customer.create(
+        null,
+        Tel.create('03-1111-2222'),
+        Name.create('DefaultUser'),
+      ),
     );
   }
 }
