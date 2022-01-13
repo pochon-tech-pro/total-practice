@@ -1,6 +1,6 @@
 import React, {useState} from "react";
 import PrimaryButton from "../atoms/PrimaryButton";
-import {postCustomerAPI} from "../../api";
+import {useRegisterCustomer} from "../../hooks/useRegisterCustomer";
 
 const HeaderInlineStyle = {
     color: "#8c2eff",
@@ -8,20 +8,18 @@ const HeaderInlineStyle = {
 }
 
 const CustomerForm: React.FC = () => {
+    const {register} = useRegisterCustomer();
     const [name, setName] = useState('');
     const [tel, setTel] = useState('');
 
     const changeName = (e: React.ChangeEvent<HTMLInputElement>) => setName(e.target.value);
     const changeTel = (e: React.ChangeEvent<HTMLInputElement>) => setTel(e.target.value);
-    const createCustomer = async (e: React.MouseEvent<HTMLButtonElement>) => {
+    const createCustomer = (e: React.MouseEvent<HTMLButtonElement>) => {
         e.preventDefault();
         if (unCreatable) {
             return false;
         }
-
-        await postCustomerAPI({name, tel});
-        setName('');
-        setTel('');
+        register(name, tel);
     }
 
     const unCreatable = name === '' || tel === '';
