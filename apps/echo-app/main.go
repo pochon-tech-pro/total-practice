@@ -8,6 +8,8 @@ import (
 	"github.com/labstack/echo/v4"
 	"gorm.io/driver/mysql"
 	"gorm.io/gorm"
+
+	"echo-app/bootstrap"
 )
 
 var DB *gorm.DB
@@ -48,6 +50,8 @@ func hello(c echo.Context) error {
 }
 
 func main() {
+	bootstrap.Start()
+
 	e := echo.New()
 	e.GET("/", hello)
 	e.Logger.Fatal(e.Start(":3001"))
