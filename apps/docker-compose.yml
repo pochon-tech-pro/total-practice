@@ -1,14 +1,23 @@
 version: '3.4'
+
 x-logging:
   &default-logging
   driver: "json-file"
   options:
     max-size: "100k"
     max-file: "3"
+
+x-dev-base-environment:
+  &dev-base-environment
+  MYSQL_ROOT_PASSWORD: pass
+  MYSQL_DATABASE: db
+  MYSQL_USER: user
+  MYSQL_PASSWORD: pass
+
 volumes:
   mysql_data: { driver: local }
-services:
 
+services:
   mysql:
     image: mysql:5.7
     environment:
@@ -56,6 +65,7 @@ services:
     logging: *default-logging
     command: yarn start:dev
     environment:
+      <<: *dev-base-environment
       FRONTEND_URI: 'http://localhost:8000'
     tty: true
     depends_on:
@@ -73,5 +83,6 @@ services:
     depends_on:
       - mysql
     command: ["./start.sh"]
+    environment: *dev-base-environment
     ports:
       - '3001:3001'
