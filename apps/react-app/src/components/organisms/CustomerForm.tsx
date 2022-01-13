@@ -1,18 +1,13 @@
 import React, {useState} from "react";
 import PrimaryButton from "../atoms/PrimaryButton";
-import {getCustomerAPI, postCustomerAPI} from "../../api";
-import {CustomerAction, FETCH_CUSTOMER} from "../../actions";
+import {postCustomerAPI} from "../../api";
 
 const HeaderInlineStyle = {
     color: "#8c2eff",
     margin: "8px 8px 8px 0",
 }
 
-interface Props {
-    dispatch: React.Dispatch<CustomerAction>
-}
-
-const CustomerForm: React.FC<Props> = ({dispatch}) => {
+const CustomerForm: React.FC = () => {
     const [name, setName] = useState('');
     const [tel, setTel] = useState('');
 
@@ -25,12 +20,6 @@ const CustomerForm: React.FC<Props> = ({dispatch}) => {
         }
 
         await postCustomerAPI({name, tel});
-        const customerList = await getCustomerAPI();
-        dispatch({
-            type: FETCH_CUSTOMER,
-            payload: customerList
-        });
-
         setName('');
         setTel('');
     }
