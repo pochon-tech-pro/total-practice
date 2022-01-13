@@ -62,3 +62,16 @@ services:
       - mysql
     ports:
       - "3000:3000"
+
+  echo:
+    build:
+      context: .
+      dockerfile: echo.Dockerfile
+    volumes:
+      - .:/app
+    working_dir: /app/echo-app
+    depends_on:
+      - mysql
+    command: ["./start.sh"]
+    ports:
+      - '3001:3001'
