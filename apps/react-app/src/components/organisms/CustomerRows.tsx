@@ -1,12 +1,12 @@
 import React from "react";
 import CustomerRow from "../molecules/CustomerRow";
-import {CustomerState} from "../../reducers";
+import {Customer} from "../../type/customer";
 
 interface Props {
-    state: CustomerState
+    customers: Customer[]
 }
 
-const CustomerRows: React.VFC<Props> = ({state}) => {
+const CustomerRows: React.VFC<Props> = ({customers}) => {
     return (
         <React.Fragment>
             <h4>顧客一覧</h4>
@@ -19,7 +19,7 @@ const CustomerRows: React.VFC<Props> = ({state}) => {
                 </thead>
                 <tbody>
                 {
-                    state.map(
+                    customers.map(
                         (customer, index) => <CustomerRow key={index} name={customer.name} tel={customer.tel}/>
                     )
                 }

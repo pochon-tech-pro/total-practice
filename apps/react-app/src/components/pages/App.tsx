@@ -15,7 +15,7 @@ const App: React.FC = () => {
     return (
         <div className={"container"}>
             <CustomerForm dispatch={dispatch} />
-            <CustomerRows state={customers}/>
+            <CustomerRows customers={customers}/>
         </div>
     );
 }
