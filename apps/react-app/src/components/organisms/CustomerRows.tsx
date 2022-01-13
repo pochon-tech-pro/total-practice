@@ -2,11 +2,7 @@ import React from "react";
 import CustomerRow from "../molecules/CustomerRow";
 import {Customer} from "../../type/customer";
 
-interface Props {
-    customers: Customer[]
-}
-
-const CustomerRows: React.VFC<Props> = ({customers}) => {
+const CustomerRows: React.VFC<{ customers: Customer[] }> = ({customers}) => {
     return (
         <React.Fragment>
             <h4>顧客一覧</h4>

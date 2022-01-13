@@ -1,4 +1,4 @@
-import React, {useEffect, useReducer} from "react";
+import React, {useEffect} from "react";
 import CustomerForm from "../organisms/CustomerForm";
 import CustomerRows from "../organisms/CustomerRows";
 import {useAllCustomers} from "../../hooks/useAllCustomers";
