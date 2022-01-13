@@ -4,9 +4,12 @@ import CustomerRows from "../organisms/CustomerRows";
 import reducer from "../../reducers";
 import {FETCH_CUSTOMER} from "../../actions";
 import {getCustomerAPI} from "../../api";
+import {useAllCustomers} from "../../hooks/useAllCustomers";
 
 const App: React.FC = () => {
     const [state, dispatch] = useReducer(reducer, []);
+
+    const { getCustomers, customers } = useAllCustomers();
 
     useEffect(() => {
         (async () => {
@@ -16,12 +19,14 @@ const App: React.FC = () => {
                 payload: customerList
             });
         })();
-    }, []);
+        getCustomers();
+    }, [getCustomers]);
+
 
     return (
         <div className={"container"}>
             <CustomerForm dispatch={dispatch} />
-            <CustomerRows state={state}/>
+            <CustomerRows state={customers}/>
         </div>
     );
 }
