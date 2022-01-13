@@ -1,33 +1,15 @@
 package main
 
 import (
+	"database/sql"
 	"fmt"
 	"net/http"
-	"os"
 
 	"github.com/labstack/echo/v4"
-	"gorm.io/driver/mysql"
-	"gorm.io/gorm"
 
 	"echo-app/bootstrap"
+	"echo-app/database"
 )
-
-var DB *gorm.DB
-
-func connect() {
-	var err error
-	dbname := os.Getenv("MYSQL_DATABASE")
-	user := os.Getenv("MYSQL_USER")
-	pass := os.Getenv("MYSQL_PASSWORD")
-	host := "mysql"
-	port := "3306"
-
-	dsn := user + ":" + pass + "@tcp(" + host + ":" + port + ")/" + dbname + "?charset=utf8mb4"
-	DB, err = gorm.Open(mysql.Open(dsn), &gorm.Config{})
-	if err != nil {
-		fmt.Println(err.Error())
-	}
-}
 
 type Customer struct {
 	Id   int    `json:"id"`
@@ -36,15 +18,21 @@ type Customer struct {
 }
 
 func hello(c echo.Context) error {
-	connect()
-	sqlDB, _ := DB.DB()
-	defer sqlDB.Close()
+	database.Connect()
+	sqlDB, _ := database.DB.DB()
+	defer func(sqlDB *sql.DB) {
+		fmt.Println("DB Closing...")
+		err := sqlDB.Close()
+		if err != nil {
+
+		}
+	}(sqlDB)
 	err := sqlDB.Ping()
 	if err != nil {
-		return c.String(http.StatusInternalServerError, "データベース接続失敗")
+		return c.String(http.StatusInternalServerError, "DB Connect Failed ..")
 	} else {
 		var customers []Customer
-		DB.Find(&customers)
+		database.DB.Find(&customers)
 		return c.JSON(http.StatusOK, customers)
 	}
 }
