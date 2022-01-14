@@ -8,15 +8,14 @@ interface Props {
     disabled: boolean
 }
 
-const PrimaryButton: React.VFC<Props> = ({children, onClickHandler, disabled}) => {
+const SecondaryButton: React.VFC<Props> = ({children, onClickHandler, disabled}) => {
     return (
         <SButton onClick={onClickHandler} disabled={disabled}>{children}</SButton>
     );
 }
 
-export default PrimaryButton;
-
+export default SecondaryButton;
 const SButton = styled(SBaseButton)`
   color: #fff;
-  background-color: #007bff;
+  background-color: #9d3030;
 `;
