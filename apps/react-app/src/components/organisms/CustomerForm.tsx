@@ -1,6 +1,8 @@
 import React, {useState} from "react";
 import PrimaryButton from "../atoms/PrimaryButton";
 import {useRegisterCustomer} from "../../hooks/useRegisterCustomer";
+import SecondaryButton from "../atoms/SecondaryButton";
+import {useAllDeleteCustomer} from "../../hooks/useAllDeleteCustomer";
 
 const HeaderInlineStyle = {
     color: "#8c2eff",
@@ -9,6 +11,7 @@ const HeaderInlineStyle = {
 
 const CustomerForm: React.FC = () => {
     const {register} = useRegisterCustomer();
+    const {allDelete} = useAllDeleteCustomer();
     const [name, setName] = useState('');
     const [tel, setTel] = useState('');
 
@@ -20,6 +23,12 @@ const CustomerForm: React.FC = () => {
             return false;
         }
         register(name, tel);
+    }
+    const allDeleteCustomer = (e: React.MouseEvent<HTMLButtonElement>) => {
+        e.preventDefault()
+        if (window.confirm("全て削除しますか？")) {
+            allDelete();
+        }
     }
 
     const unCreatable = name === '' || tel === '';
@@ -40,6 +49,7 @@ const CustomerForm: React.FC = () => {
                 </div>
                 <div className={"form-group"}>
                     <PrimaryButton onClickHandler={createCustomer} disabled={unCreatable}>登録</PrimaryButton>
+                    <SecondaryButton onClickHandler={allDeleteCustomer} disabled={false}>削除</SecondaryButton>
                 </div>
             </form>
         </React.Fragment>
