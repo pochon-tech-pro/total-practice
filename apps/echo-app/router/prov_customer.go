@@ -3,7 +3,6 @@ package router
 import (
 	"echo-app/foundation"
 	"echo-app/sales/application/service"
-	"echo-app/sales/presentation"
 	"github.com/labstack/echo/v4"
 	"net/http"
 )
@@ -22,10 +21,20 @@ func HelloPage(m foundation.Middleware) echo.HandlerFunc {
 	}
 }
 
+func CustomerListHandler(s service.CustomerListService) echo.HandlerFunc {
+	return func(c echo.Context) error {
+		output, err := s.Find()
+		if err != nil {
+			return NewHTTPError(http.StatusBadRequest, "InvalidID", err.Error())
+		}
+		return c.JSON(http.StatusOK, output)
+	}
+}
+
 func provCustomer(m foundation.Middleware) {
 	{
 		s := service.CustomerListService{}
-		m.Echo.GET("/sample", presentation.CustomerListHandler(s))
+		m.Echo.GET("/sample", CustomerListHandler(s))
 	}
 	{
 		m.Echo.GET("/", HelloPage(m))
