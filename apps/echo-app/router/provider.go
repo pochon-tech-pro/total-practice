@@ -6,5 +6,5 @@ import (
 
 func Provider(m foundation.Middleware) {
 	provCustomer(m)
-	m.E.Logger.Fatal(m.E.Start(":3001"))
+	m.Echo.Logger.Fatal(m.Echo.Start(":3001"))
 }

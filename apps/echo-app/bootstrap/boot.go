@@ -24,7 +24,7 @@ func Start() {
 	}(sqlDB)
 
 	router.Provider(foundation.Middleware{
-		DB: database.DB,
-		E:  echo.New(),
+		DB:   database.DB,
+		Echo: echo.New(),
 	})
 }

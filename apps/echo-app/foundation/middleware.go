@@ -6,6 +6,6 @@ import (
 )
 
 type Middleware struct {
-	DB *gorm.DB
-	E  *echo.Echo
+	DB   *gorm.DB
+	Echo *echo.Echo
 }

@@ -25,9 +25,9 @@ func HelloPage(m foundation.Middleware) echo.HandlerFunc {
 func provCustomer(m foundation.Middleware) {
 	{
 		s := service.CustomerListService{}
-		m.E.GET("/sample", presentation.CustomerListHandler(s))
+		m.Echo.GET("/sample", presentation.CustomerListHandler(s))
 	}
 	{
-		m.E.GET("/", HelloPage(m))
+		m.Echo.GET("/", HelloPage(m))
 	}
 }
