@@ -2,6 +2,8 @@ package router
 
 import (
 	"echo-app/foundation"
+	"echo-app/sales/application/service"
+	"echo-app/sales/presentation"
 	"github.com/labstack/echo/v4"
 	"net/http"
 )
@@ -20,6 +22,12 @@ func HelloPage(m foundation.Middleware) echo.HandlerFunc {
 	}
 }
 
-func provUser(m foundation.Middleware) {
-	m.E.GET("/", HelloPage(m))
+func provCustomer(m foundation.Middleware) {
+	{
+		s := service.CustomerListService{}
+		m.E.GET("/sample", presentation.CustomerListHandler(s))
+	}
+	{
+		m.E.GET("/", HelloPage(m))
+	}
 }
