@@ -1,4 +1,4 @@
-package router
+package api
 
 import (
 	"echo-app/foundation"
@@ -28,15 +28,5 @@ func CustomerListHandler(s service.CustomerListService) echo.HandlerFunc {
 			return NewHTTPError(http.StatusBadRequest, "InvalidID", err.Error())
 		}
 		return c.JSON(http.StatusOK, output)
-	}
-}
-
-func provCustomer(m foundation.Middleware) {
-	{
-		s := service.CustomerListService{}
-		m.Echo.GET("/sample", CustomerListHandler(s))
-	}
-	{
-		m.Echo.GET("/", HelloPage(m))
 	}
 }

@@ -1,7 +1,8 @@
-package router
+package api
 
 import (
 	"echo-app/foundation"
+	"echo-app/sales/application/service"
 	"github.com/labstack/echo/v4"
 	"net/http"
 )
@@ -54,9 +55,16 @@ func NewHTTPError(code int, key string, msg string) *httpError {
 	}
 }
 
-func Provider(m foundation.Middleware) {
+func Routes(m foundation.Middleware) {
 	m.Echo.HTTPErrorHandler = httpErrorHandler
 
-	provCustomer(m)
+	{
+		s := service.CustomerListService{}
+		m.Echo.GET("/sample", CustomerListHandler(s))
+	}
+
+	{
+		m.Echo.GET("/", HelloPage(m))
+	}
 	m.Echo.Logger.Fatal(m.Echo.Start(":3001"))
 }

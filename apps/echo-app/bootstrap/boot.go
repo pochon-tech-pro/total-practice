@@ -4,7 +4,7 @@ import (
 	"database/sql"
 	"echo-app/database"
 	"echo-app/foundation"
-	"echo-app/router"
+	"echo-app/sales/interfaces/api"
 	"fmt"
 	"github.com/labstack/echo/v4"
 	"log"
@@ -23,7 +23,7 @@ func Start() {
 		}
 	}(sqlDB)
 
-	router.Provider(foundation.Middleware{
+	api.Routes(foundation.Middleware{
 		DB:   database.DB,
 		Echo: echo.New(),
 	})
