@@ -1,7 +1,11 @@
 package foundation
 
-import "gorm.io/gorm"
+import (
+	"github.com/labstack/echo/v4"
+	"gorm.io/gorm"
+)
 
 type Middleware struct {
 	DB *gorm.DB
+	E  *echo.Echo
 }

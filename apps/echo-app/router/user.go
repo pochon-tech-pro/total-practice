@@ -1,4 +1,4 @@
-package bootstrap
+package router
 
 import (
 	"echo-app/foundation"
@@ -20,8 +20,6 @@ func HelloPage(m foundation.Middleware) echo.HandlerFunc {
 	}
 }
 
-func provider(m foundation.Middleware) {
-	e := echo.New()
-	e.GET("/", HelloPage(m))
-	e.Logger.Fatal(e.Start(":3001"))
+func provUser(m foundation.Middleware) {
+	m.E.GET("/", HelloPage(m))
 }
