@@ -66,8 +66,5 @@ func Routes(m foundation.Middleware) {
 		m.Echo.GET("/sample", CustomerListHandler(s))
 	}
 
-	{
-		m.Echo.GET("/", HelloPage(m))
-	}
 	m.Echo.Logger.Fatal(m.Echo.Start(":3001"))
 }
