@@ -1,11 +1,11 @@
 package service
 
 import (
-	"errors"
-	"fmt"
+	"echo-app/sales/application/repository"
 )
 
 type CustomerListService struct {
+	CustomerRepository repository.CustomerRepository
 }
 
 type Output struct {
@@ -13,16 +13,15 @@ type Output struct {
 	Name string
 }
 
-func (c CustomerListService) Find() (out []Output, err error) {
-	out = append(out, Output{
-		Id:   1,
-		Name: "Test",
-	})
-	out = append(out, Output{
-		Id:   2,
-		Name: "Test2",
-	})
-	err = errors.New(fmt.Sprintf("unexpected : %+v", out))
+func (c CustomerListService) FindAll() (out []Output, err error) {
+	data := c.CustomerRepository.FindAll()
+	for _, v := range data {
+		out = append(out, Output{
+			Id:   v.Id,
+			Name: v.Name,
+		})
+	}
+	//err = errors.New(fmt.Sprintf("unexpected : %+v", out))
 
 	return
 }

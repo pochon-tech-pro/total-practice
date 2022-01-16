@@ -21,9 +21,9 @@ func HelloPage(m foundation.Middleware) echo.HandlerFunc {
 	}
 }
 
-func CustomerListHandler(s service.CustomerListService) echo.HandlerFunc {
+func CustomerListHandler(service service.CustomerListService) echo.HandlerFunc {
 	return func(c echo.Context) error {
-		output, err := s.Find()
+		output, err := service.FindAll()
 		if err != nil {
 			return NewHTTPError(http.StatusBadRequest, "InvalidID", err.Error())
 		}
