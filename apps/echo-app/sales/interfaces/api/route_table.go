@@ -3,6 +3,7 @@ package api
 import (
 	"echo-app/foundation"
 	"echo-app/sales/application/service"
+	db "echo-app/sales/infra/repository"
 	"github.com/labstack/echo/v4"
 	"net/http"
 )
@@ -59,7 +60,9 @@ func Routes(m foundation.Middleware) {
 	m.Echo.HTTPErrorHandler = httpErrorHandler
 
 	{
-		s := service.CustomerListService{}
+		s := service.CustomerListService{
+			CustomerRepository: db.DBCustomerRepository{DB: m.DB},
+		}
 		m.Echo.GET("/sample", CustomerListHandler(s))
 	}
 
