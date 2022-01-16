@@ -9,6 +9,22 @@ type DBCustomerRepository struct {
 	DB *gorm.DB
 }
 
+type Customer struct {
+	Id   int    `json:"id"`
+	Name string `json:"name"`
+	Tel  string `json:"tel"`
+}
+
 func (d DBCustomerRepository) FindAll() (out model.Customers) {
-	return model.Customers{{1, "test", "03-0001-0001"}}
+	var customers []Customer
+	d.DB.Find(&customers)
+	// log.Printf("%+v", customers)
+	for _, v := range customers {
+		out = append(out, model.Customer{
+			Id:   v.Id,
+			Name: v.Name,
+			Tel:  v.Tel,
+		})
+	}
+	return
 }
