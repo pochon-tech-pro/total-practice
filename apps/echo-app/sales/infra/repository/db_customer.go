@@ -11,15 +11,9 @@ type DBCustomerRepository struct {
 }
 
 func (d DBCustomerRepository) FindAll() (out model.Customers) {
-	var customers []orm.CustomerORM
+	var customers orm.CustomersORM
 	d.DB.Find(&customers)
 	// log.Printf("%+v", customers)
-	for _, v := range customers {
-		out = append(out, model.Customer{
-			Id:   v.Id,
-			Name: v.Name,
-			Tel:  v.Tel,
-		})
-	}
+	out, _ = customers.ToModel()
 	return
 }
