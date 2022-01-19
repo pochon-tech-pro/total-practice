@@ -9,8 +9,9 @@ type CustomerListService struct {
 }
 
 type Output struct {
-	Id   int
-	Name string
+	Id   int    `json:"id"`
+	Name string `json:"name"`
+	Tel  string `json:"tel"`
 }
 
 func (c CustomerListService) FindAll() (out []Output, err error) {
@@ -19,6 +20,7 @@ func (c CustomerListService) FindAll() (out []Output, err error) {
 		out = append(out, Output{
 			Id:   v.Id.ToInt(),
 			Name: v.Name.ToString(),
+			Tel:  v.Tel.ToString(),
 		})
 	}
 	//err = errors.New(fmt.Sprintf("unexpected : %+v", out))
