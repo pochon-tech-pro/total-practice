@@ -2,9 +2,10 @@ import React, {useEffect} from "react";
 import CustomerForm from "../organisms/CustomerForm";
 import CustomerRows from "../organisms/CustomerRows";
 import {useAllCustomers} from "../../hooks/useAllCustomers";
+import {API_TYPE} from "../../api";
 
 const App: React.FC = () => {
-    const {getCustomers, customers} = useAllCustomers();
+    const {getCustomers, customers} = useAllCustomers(API_TYPE.NODE_NEST_API);
     useEffect(() => {
         getCustomers();
     }, [getCustomers]);
