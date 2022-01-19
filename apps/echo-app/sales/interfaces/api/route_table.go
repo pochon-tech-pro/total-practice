@@ -63,7 +63,7 @@ func Routes(m foundation.Middleware) {
 		s := service.CustomerListService{
 			CustomerRepository: db.DBCustomerRepository{DB: m.DB},
 		}
-		m.Echo.GET("/sample", CustomerListHandler(s))
+		m.Echo.GET("/customer/all", CustomerListHandler(s))
 	}
 
 	m.Echo.Logger.Fatal(m.Echo.Start(":3001"))
