@@ -1,8 +1,9 @@
-import { Body, Controller, Get, Post, Query } from '@nestjs/common';
+import { Body, Controller, Get, Post, Query, UseGuards } from '@nestjs/common';
 import { QueryParameters } from './queryParameters';
 import { CustomerService } from '../../app/service/customer/customerService';
 import { Customer } from '../../domain/model/customer';
 import { PostParameters } from './postParameters';
+import { JwtAuthGuard } from '../../../auth/jwt-auth.guard';
 
 type ResponseSchema<T> = {
   isSuccess: boolean;
@@ -10,6 +11,7 @@ type ResponseSchema<T> = {
   body: T;
 };
 
+@UseGuards(JwtAuthGuard)
 @Controller('customer')
 export class CustomerController {
   constructor(private readonly customerService: CustomerService) {}
