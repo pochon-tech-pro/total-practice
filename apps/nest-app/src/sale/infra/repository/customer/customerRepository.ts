@@ -4,7 +4,6 @@ import { Tel } from '../../../domain/type/tel';
 import { Customer } from '../../../domain/model/customer';
 import { CustomerEntity } from '../../entities/customer/customer.entity';
 import { getRepository } from 'typeorm';
-import { Name } from '../../../domain/type/name';
 import { CustomerList } from '../../../domain/model/customerList';
 
 @Injectable()
@@ -42,11 +41,7 @@ export class CustomerRepository implements ICustomerRepository {
   private static toCustomer(entity?: CustomerEntity): Customer {
     return entity === undefined
       ? Customer.nullObject()
-      : Customer.create(
-          entity.id,
-          Tel.create(entity.tel),
-          Name.create(entity.name),
-        );
+      : Customer.reConstructor(entity.id, entity.tel, entity.name);
   }
 
   private static toEntity(customer: Customer): CustomerEntity {

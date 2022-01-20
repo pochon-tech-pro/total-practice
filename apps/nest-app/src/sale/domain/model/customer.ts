@@ -13,7 +13,14 @@ export class Customer {
   }
 
   static create(id: number, tel: Tel, name: Name): Customer {
+    if (id !== null && id < 0) {
+      throw new Error('idは正の整数以外受け付けません。');
+    }
     return new Customer(id, tel, name);
+  }
+
+  static reConstructor(id: number, tel: string, name: string): Customer {
+    return new Customer(id, Tel.create(tel), Name.create(name));
   }
 
   static nullObject(): Customer {
