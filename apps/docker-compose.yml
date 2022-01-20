@@ -86,3 +86,16 @@ services:
     environment: *dev-base-environment
     ports:
       - '3001:3001'
+
+  react:
+    build:
+      context: .
+      dockerfile: react.Dockerfile
+    volumes:
+      - .:/app
+    working_dir: /app/react-app
+    logging: *default-logging
+    command: yarn start
+    tty: true
+    ports:
+      - "8000:8000"
