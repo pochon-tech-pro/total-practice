@@ -67,6 +67,8 @@ services:
     environment:
       <<: *dev-base-environment
       FRONTEND_URI: 'http://localhost:8000'
+    env_file:
+      - ./nest-app/.env
     tty: true
     depends_on:
       - mysql
