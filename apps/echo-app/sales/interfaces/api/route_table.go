@@ -5,6 +5,7 @@ import (
 	"echo-app/sales/application/service"
 	db "echo-app/sales/infra/repository"
 	"github.com/labstack/echo/v4"
+	"github.com/labstack/echo/v4/middleware"
 	"net/http"
 )
 
@@ -58,6 +59,7 @@ func NewHTTPError(code int, key string, msg string) *httpError {
 
 func Routes(m foundation.Middleware) {
 	m.Echo.HTTPErrorHandler = httpErrorHandler
+	m.Echo.Use(middleware.CORS())
 
 	{
 		s := service.CustomerListService{
