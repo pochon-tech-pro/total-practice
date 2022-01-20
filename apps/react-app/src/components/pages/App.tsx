@@ -5,7 +5,7 @@ import {useAllCustomers} from "../../hooks/useAllCustomers";
 import {API_TYPE} from "../../api";
 
 const App: React.FC = () => {
-    const {getCustomers, customers} = useAllCustomers(API_TYPE.NODE_NEST_API);
+    const {getCustomers, customers} = useAllCustomers(API_TYPE.GO_ECHO_API);
     useEffect(() => {
         getCustomers();
     }, [getCustomers]);
