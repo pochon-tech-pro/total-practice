@@ -3,7 +3,7 @@ import { QueryParameters } from './queryParameters';
 import { CustomerService } from '../../app/service/customer/customerService';
 import { Customer } from '../../domain/model/customer';
 import { PostParameters } from './postParameters';
-import { JwtAuthGuard } from '../../../auth/jwt-auth.guard';
+import { JwtAuthGuard } from '../auth/jwt-auth.guard';
 
 type ResponseSchema<T> = {
   isSuccess: boolean;
