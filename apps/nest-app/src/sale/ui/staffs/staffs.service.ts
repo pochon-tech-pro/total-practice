@@ -7,8 +7,8 @@ export type Staff = {
 };
 
 @Injectable()
-export class UsersService {
-  private readonly users: Staff[] = [
+export class StaffsService {
+  private readonly staffs: Staff[] = [
     {
       id: 1,
       name: 'A',
@@ -17,6 +17,6 @@ export class UsersService {
   ];
 
   async findOne(name: string): Promise<Staff | undefined> {
-    return this.users.find((user) => user.name === name);
+    return this.staffs.find((staff) => staff.name === name);
   }
 }
