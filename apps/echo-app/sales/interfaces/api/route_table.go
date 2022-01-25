@@ -2,7 +2,7 @@ package api
 
 import (
 	"echo-app/foundation"
-	"echo-app/sales/application/service"
+	"echo-app/sales/application/usecase"
 	db "echo-app/sales/infra/repository"
 	"github.com/labstack/echo/v4"
 	"github.com/labstack/echo/v4/middleware"
@@ -62,7 +62,7 @@ func Routes(m foundation.Middleware) {
 	m.Echo.Use(middleware.CORS())
 
 	{
-		s := service.CustomerListService{
+		s := usecase.CustomerUseCase{
 			CustomerRepository: db.DBCustomerRepository{DB: m.DB},
 		}
 		m.Echo.GET("/customer/all", CustomerListHandler(s))

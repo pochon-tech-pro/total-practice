@@ -1,24 +1,24 @@
 package api
 
 import (
-	"echo-app/sales/application/service"
+	"echo-app/sales/application/usecase"
 	"github.com/labstack/echo/v4"
 	"net/http"
 )
 
-type ResponseSchema struct {
-	IsSuccess bool             `json:"isSuccess"`
-	Message   string           `json:"message"`
-	Body      []service.Output `json:"body"`
-}
-
-func CustomerListHandler(service service.CustomerListService) echo.HandlerFunc {
+func CustomerListHandler(service usecase.CustomerUseCase) echo.HandlerFunc {
 	return func(c echo.Context) error {
 		output, err := service.FindAll()
 		if err != nil {
 			return NewHTTPError(http.StatusBadRequest, "InvalidID", err.Error())
 		}
-		response := ResponseSchema{
+
+		type responseSchema struct {
+			IsSuccess bool                    `json:"isSuccess"`
+			Message   string                  `json:"message"`
+			Body      []usecase.FindAllOutput `json:"body"`
+		}
+		response := responseSchema{
 			IsSuccess: true,
 			Message:   "",
 			Body:      output,

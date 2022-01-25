@@ -1,23 +1,23 @@
-package service
+package usecase
 
 import (
 	"echo-app/sales/application/repository"
 )
 
-type CustomerListService struct {
+type CustomerUseCase struct {
 	CustomerRepository repository.CustomerRepository
 }
 
-type Output struct {
+type FindAllOutput struct {
 	Id   int    `json:"id"`
 	Name string `json:"name"`
 	Tel  string `json:"tel"`
 }
 
-func (c CustomerListService) FindAll() (out []Output, err error) {
+func (c CustomerUseCase) FindAll() (out []FindAllOutput, err error) {
 	data := c.CustomerRepository.FindAll()
 	for _, v := range data {
-		out = append(out, Output{
+		out = append(out, FindAllOutput{
 			Id:   v.Id.ToInt(),
 			Name: v.Name.ToString(),
 			Tel:  v.Tel.ToString(),
