@@ -66,6 +66,7 @@ func Routes(m foundation.Middleware) {
 			CustomerRepository: db.DBCustomerRepository{DB: m.DB},
 		}
 		m.Echo.GET("/customer/all", CustomerListHandler(s))
+		m.Echo.GET("/customer/", CustomerFindOneHandler(s))
 	}
 
 	m.Echo.Logger.Fatal(m.Echo.Start(":3001"))

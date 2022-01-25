@@ -33,14 +33,21 @@ func (c CustomerUseCase) FindAll() (out []FindAllOutput, err error) {
 	return
 }
 
-//
-//type FindOneInput struct {
-//}
-//
-//type FindOneOutput struct {
-//	Id   int    `json:"id"`
-//	Name string `json:"name"`
-//	Tel  string `json:"tel"`
-//}
-//
-//func (c CustomerUseCase) FindOne(in FindOneInput) (out FindOneOutput, err error) {}
+type FindOneInput struct {
+	Tel string `json:"tel"`
+}
+
+type FindOneOutput struct {
+	Customer
+}
+
+func (c CustomerUseCase) FindOne(in FindOneInput) (out FindOneOutput, err error) {
+	out = FindOneOutput{
+		Customer{
+			Id:   1000,
+			Name: "太郎",
+			Tel:  "03-1111-2222",
+		},
+	}
+	return
+}
