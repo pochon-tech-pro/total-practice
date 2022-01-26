@@ -62,13 +62,12 @@ func Routes(m foundation.Middleware) {
 
 	m.Echo.HTTPErrorHandler = httpErrorHandler
 	m.Echo.Use(middleware.CORS())
-
 	{
 		s := usecase.CustomerUseCase{
 			CustomerRepository: db.DBCustomerRepository{DB: m.DB},
 		}
 		m.Echo.GET("/customer/all", CustomerListHandler(s))
-		m.Echo.GET("/customer/", CustomerFindOneHandler(s))
+		m.Echo.GET("/customer", CustomerFindOneHandler(s))
 	}
 
 	m.Echo.Logger.Fatal(m.Echo.Start(":3001"))
