@@ -29,7 +29,12 @@ func CustomerListHandler(service usecase.CustomerUseCase) echo.HandlerFunc {
 
 func CustomerFindOneHandler(service usecase.CustomerUseCase) echo.HandlerFunc {
 	return func(c echo.Context) error {
-		output, err := service.FindOne(usecase.FindOneInput{Tel: "03-1111-2222"})
+		tel := c.QueryParam("tel")
+		if tel == "" {
+			return NewHTTPError(http.StatusBadRequest, "NotQueryParameter", "not get query parameter tel")
+		}
+
+		output, err := service.FindOne(usecase.FindOneInput{Tel: tel})
 		if err != nil {
 			return NewHTTPError(http.StatusBadRequest, "InvalidID", err.Error())
 		}
