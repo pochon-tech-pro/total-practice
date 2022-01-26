@@ -58,6 +58,8 @@ func NewHTTPError(code int, key string, msg string) *httpError {
 }
 
 func Routes(m foundation.Middleware) {
+	m.Echo.Use(middleware.Logger())
+
 	m.Echo.HTTPErrorHandler = httpErrorHandler
 	m.Echo.Use(middleware.CORS())
 
