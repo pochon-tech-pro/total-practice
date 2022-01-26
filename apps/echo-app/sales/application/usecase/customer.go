@@ -2,6 +2,7 @@ package usecase
 
 import (
 	"echo-app/sales/application/repository"
+	"echo-app/sales/domain/model"
 )
 
 type CustomerUseCase struct {
@@ -42,11 +43,13 @@ type FindOneOutput struct {
 }
 
 func (c CustomerUseCase) FindOne(in FindOneInput) (out FindOneOutput, err error) {
+	tel := model.Tel(in.Tel)
+	data := c.CustomerRepository.FindByTel(tel)
 	out = FindOneOutput{
 		Customer{
-			Id:   1000,
-			Name: "太郎",
-			Tel:  "03-1111-2222",
+			Id:   data.Id.ToInt(),
+			Name: data.Name.ToString(),
+			Tel:  data.Tel.ToString(),
 		},
 	}
 	return
