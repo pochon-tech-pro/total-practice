@@ -36,7 +36,7 @@ func CustomerFindOneHandler(service usecase.CustomerUseCase) echo.HandlerFunc {
 
 		output, err := service.FindOne(usecase.FindOneInput{Tel: tel})
 		if err != nil {
-			return NewHTTPError(http.StatusBadRequest, "InvalidID", err.Error())
+			return NewHTTPError(http.StatusBadRequest, "InternalServerError", err.Error())
 		}
 
 		type responseSchema struct {

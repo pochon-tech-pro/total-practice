@@ -18,10 +18,13 @@ func (d DBCustomerRepository) FindAll() (out model.Customers) {
 	return
 }
 
-func (d DBCustomerRepository) FindByTel(tel model.Tel) (out model.Customer) {
+func (d DBCustomerRepository) FindByTel(tel model.Tel) (out model.Customer, err error) {
 	var customer orm.CustomerORM
-	d.DB.Where(&orm.CustomerORM{Tel: tel.ToString()}).Find(&customer)
-
+	result := d.DB.Where(&orm.CustomerORM{Tel: tel.ToString()}).First(&customer)
+	if result.Error != nil {
+		err = result.Error
+		return
+	}
 	out, _ = model.NewCustomer(customer.Id, customer.Name, customer.Tel)
 	return
 }

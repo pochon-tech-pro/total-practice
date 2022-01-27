@@ -44,7 +44,7 @@ type FindOneOutput struct {
 
 func (c CustomerUseCase) FindOne(in FindOneInput) (out FindOneOutput, err error) {
 	tel := model.Tel(in.Tel)
-	data := c.CustomerRepository.FindByTel(tel)
+	data, err := c.CustomerRepository.FindByTel(tel)
 	out = FindOneOutput{
 		Customer{
 			Id:   data.Id.ToInt(),
