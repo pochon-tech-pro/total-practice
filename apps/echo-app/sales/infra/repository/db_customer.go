@@ -19,6 +19,9 @@ func (d DBCustomerRepository) FindAll() (out model.Customers) {
 }
 
 func (d DBCustomerRepository) FindByTel(tel model.Tel) (out model.Customer) {
-	out, _ = model.NewCustomer(1000, "太郎だよ", "03-1111-2222")
+	var customer orm.CustomerORM
+	d.DB.Where(&orm.CustomerORM{Tel: tel.ToString()}).Find(&customer)
+
+	out, _ = model.NewCustomer(customer.Id, customer.Name, customer.Tel)
 	return
 }
